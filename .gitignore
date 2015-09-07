@@ -39,6 +39,7 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
+.ropeproject/
 nosetests.xml
 coverage.xml
 *,cover
