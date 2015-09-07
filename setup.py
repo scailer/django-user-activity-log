@@ -10,6 +10,8 @@ Features:
   - DB router for writing logs to another database.
   - Filters for ignoring some queries by URL, HTTP methods and response codes.
   - Saving anonymous activity as fake user.
+
+More: https://github.com/scailer/django-user-activity-log
 """
 
 setup(
