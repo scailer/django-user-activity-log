@@ -1,0 +1,14 @@
+decorator==4.0.2
+Django==1.8.4
+ipython==4.0.0
+ipython-genutils==0.1.0
+path.py==8.1
+pexpect==3.3
+pickleshare==0.5
+pudb==2015.3
+Pygments==2.0.2
+pytz==2015.4
+simplegeneric==0.8.1
+traitlets==4.0.0
+urwid==1.3.0
+wheel==0.24.0

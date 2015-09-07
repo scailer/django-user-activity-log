@@ -65,3 +65,5 @@ from activity_log.models import UserMixin
 class User(AbstractUser, UserMixin):
     pass
 ```
+
+$ python manage.py migrate & python manage.py migrate --database=logs

@@ -23,7 +23,7 @@ setup(
     include_package_data=True,
     packages=[
         'activity_log',
-        'social_publisher.migrations',
+        'activity_log.migrations',
     ],
 
     url='https://github.com/scailer/django-user-activity-log/',
