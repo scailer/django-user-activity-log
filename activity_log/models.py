@@ -44,7 +44,7 @@ class ActivityLog(models.Model):
 
 class UserMixin(models.Model):
     last_activity = models.DateTimeField(
-        _('last activity'), default=timezone.now)
+        _('last activity'), default=timezone.now, editable=False)
 
     def update_last_activity(self):
         self.last_activity = timezone.now()
