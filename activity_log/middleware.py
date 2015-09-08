@@ -28,7 +28,7 @@ class ActivityLogMiddleware:
         if request.user.is_authenticated():
             user, user_id = request.user.get_username(), request.user.pk
         else:
-            user, user_id = 'anonimus', 0
+            user, user_id = 'anon_{}'.format(request.session.session_key), 0
 
         ActivityLog.objects.create(
             user_id=user_id,
