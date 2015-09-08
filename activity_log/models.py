@@ -46,7 +46,7 @@ class UserMixin(models.Model):
 
     def update_last_activity(self):
         self.last_activity = timezone.now()
-        self.save()
+        self.save(update_fields=["last_activity"])
 
     class Meta:
         abstract = True
