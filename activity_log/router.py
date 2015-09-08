@@ -37,7 +37,4 @@ class DatabaseAppsRouter(object):
 
     def allow_migrate(self, db, app_label, model=None, **hints):
         """Make sure that apps only appear in the related database."""
-        map_db = settings.DATABASE_APPS_MAPPING.get(app_label)
-        if map_db:
-            return map_db == db
-        return None
+        return settings.DATABASE_APPS_MAPPING.get(app_label, 'default') == db
