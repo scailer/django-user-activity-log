@@ -3,6 +3,29 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.apps import apps
+from django.dispatch import receiver
+from django.db.models.signals import pre_migrate
+from django.db import connection
+from django.core.management import call_command
+from django.conf import settings
+from django.db.utils import ProgrammingError
+
+from . import conf
+
+
+if conf.AUTOCREATE_DB:
+    @receiver(pre_migrate, sender=apps.get_app_config('activity_log'))
+    def createdb(sender, using, **kwargs):
+        db = settings.DATABASES[conf.LOG_DB_KEY]['NAME']
+        with connection.cursor() as cursor:
+            try:
+                cursor.execute("CREATE DATABASE {}".format(db))
+            except ProgrammingError:
+                pass
+
+        if using == 'default':
+            call_command('migrate', database=conf.LOG_DB_KEY)
 
 
 class ActivityLog(models.Model):

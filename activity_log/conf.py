@@ -22,3 +22,14 @@ EXCLUDE_STATUSES = getattr(settings, 'ACTIVITYLOG_EXCLUDE_STATUSES', None)
 
 # URL substrings, which ignores
 EXCLUDE_URLS = getattr(settings, 'ACTIVITYLOG_EXCLUDE_URLS', ())
+
+# Create DB automatically (for postgres, and may be mysql)
+AUTOCREATE_DB = getattr(settings, 'ACTIVITYLOG_AUTOCREATE_DB', False)
+
+# Log DB key in DATABASES (for internal usage only, don't modify)
+LOG_DB_KEY = getattr(settings, 'DATABASE_APPS_MAPPING', {}).get('activity_log')
+
+if AUTOCREATE_DB and LOG_DB_KEY and not settings.DATABASES.get(LOG_DB_KEY):
+    db = settings.DATABASES['default'].copy()
+    db['NAME'] = '{}_{}'.format(db['NAME'], LOG_DB_KEY)
+    settings.DATABASES[LOG_DB_KEY] = db
