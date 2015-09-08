@@ -24,14 +24,24 @@ MIDDLEWARE_CLASSES = (
 )
 
 # For writing log to another DB
+
+DATABASE_ROUTERS = ['activity_log.router.DatabaseAppsRouter']
+DATABASE_APPS_MAPPING = {'activity_log': 'logs'}
+
+# If you set up DATABASE_APPS_MAPPING, but don't set related value in
+# DATABASES, it will created automatically using "default" DB settings
+# as example.
 DATABASES = {
     'logs': {
         ...
     },
 }
 
-DATABASE_ROUTERS = ['activity_log.router.DatabaseAppsRouter']
-DATABASE_APPS_MAPPING = {'activity_log': 'logs'}
+# Create DB automatically (for postgres, and may be mysql).
+# We create log database automatically using raw SQL in pre_migrate signal.
+# You must insure, that DB user has permissions for creation databases. 
+# Tested only for postgresql
+ACTIVITYLOG_AUTOCREATE_DB = False
 
 # App settings
 
@@ -67,3 +77,6 @@ class User(AbstractUser, UserMixin):
 ```
 
 $ python manage.py migrate & python manage.py migrate --database=logs
+
+If you use ACTIVITYLOG_AUTOCREATE_DB migrations to logs database 
+will be run automatically.
