@@ -35,7 +35,8 @@ class ActivityLogMiddleware:
             user=user,
             request_url=request.build_absolute_uri(),
             request_method=request.method,
-            response_code=response.status_code
+            response_code=response.status_code,
+            ip_address=request.META.get('REMOTE_ADDR')
         )
 
         return response

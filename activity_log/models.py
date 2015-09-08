@@ -35,6 +35,8 @@ class ActivityLog(models.Model):
     request_method = models.CharField(_('http method'), max_length=10)
     response_code = models.CharField(_('response code'), max_length=3)
     datetime = models.DateTimeField(_('datetime'), default=timezone.now)
+    ip_address = models.GenericIPAddressField(
+        _('user IP'), null=True, blank=True)
 
     class Meta:
         verbose_name = _('activity log')
