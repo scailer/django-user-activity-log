@@ -36,7 +36,7 @@ DATABASE_APPS_MAPPING = {'activity_log': 'logs'}
 # App settings
 
 # Log anonimus actions?
-ACTIVITYLOG_ANONIMUS = True
+ACTIVITYLOG_ANONIMOUS = True
 
 # Update last activity datetime in user profile. Needs updates for user model.
 ACTIVITYLOG_LAST_ACTIVITY = True

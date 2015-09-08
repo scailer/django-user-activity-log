@@ -11,7 +11,7 @@ class ActivityLogMiddleware:
 
     def process_response(self, request, response):
         miss_log = [
-            not(conf.ANONIMUS or request.user.is_authenticated()),
+            not(conf.ANONIMOUS or request.user.is_authenticated()),
             request.method not in conf.METHODS,
             any(url in request.path for url in conf.EXCLUDE_URLS)
         ]

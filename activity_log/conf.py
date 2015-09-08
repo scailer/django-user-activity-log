@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 # Log anonimus actions?
-ANONIMUS = getattr(settings, 'ACTIVITYLOG_ANONIMUS', True)
+ANONIMOUS = getattr(settings, 'ACTIVITYLOG_ANONIMOUS', True)
 
 # Update last activity datetime in user profile
 LAST_ACTIVITY = getattr(settings, 'ACTIVITYLOG_LAST_ACTIVITY', True)
