@@ -4,6 +4,7 @@ Features:
 - DB router for writing logs to another database.
 - Filters for ignoring some queries by URL, HTTP methods and response codes.
 - Saving anonymous activity as fake user.
+- Autocreation log DB (for postgresql)
 
 Install:
 
