@@ -1,7 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from . import conf
+from django.utils.module_loading import import_string as _load
 from .models import ActivityLog
+from . import conf
+
+
+def get_ip_address(request):
+    for header in conf.IP_ADDRESS_HEADERS:
+        addr = request.META.get(header)
+        if addr:
+            return addr
+
+
+def get_extra_data(request, response):
+    if not conf.GET_EXTRA_DATA:
+        return
+    return _load(conf.GET_EXTRA_DATA)(request, response)
 
 
 class ActivityLogMiddleware:
@@ -36,7 +50,8 @@ class ActivityLogMiddleware:
             request_url=request.build_absolute_uri(),
             request_method=request.method,
             response_code=response.status_code,
-            ip_address=request.META.get('REMOTE_ADDR')
+            ip_address=get_ip_address(request),
+            extra_data=get_extra_data(request, response)
         )
 
         return response

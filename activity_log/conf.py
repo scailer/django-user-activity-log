@@ -26,6 +26,15 @@ EXCLUDE_URLS = getattr(settings, 'ACTIVITYLOG_EXCLUDE_URLS', ())
 # Create DB automatically (for postgres, and may be mysql)
 AUTOCREATE_DB = getattr(settings, 'ACTIVITYLOG_AUTOCREATE_DB', False)
 
+# Customization for ip_address field.
+# List of HTTP headers where we will search user IP
+IP_ADDRESS_HEADERS = ('HTTP_X_REAL_IP', 'HTTP_CLIENT_IP',
+                      'HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR')
+
+# Customization for extra_data field.
+# Function get request and response objects, returns str
+GET_EXTRA_DATA = getattr(settings, 'ACTIVITYLOG_GET_EXTRA_DATA', None)
+
 # Log DB key in DATABASES (for internal usage only, don't modify)
 LOG_DB_KEY = getattr(settings, 'DATABASE_APPS_MAPPING', {}).get('activity_log')
 
