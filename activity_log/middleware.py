@@ -47,7 +47,7 @@ class ActivityLogMiddleware:
         ActivityLog.objects.create(
             user_id=user_id,
             user=user,
-            request_url=request.build_absolute_uri(),
+            request_url=request.build_absolute_uri()[:255],
             request_method=request.method,
             response_code=response.status_code,
             ip_address=get_ip_address(request),
