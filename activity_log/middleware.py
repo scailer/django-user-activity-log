@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 from django.utils.module_loading import import_string as _load
 from .models import ActivityLog
 from . import conf
