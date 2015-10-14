@@ -11,7 +11,7 @@ def get_ip_address(request):
     for header in conf.IP_ADDRESS_HEADERS:
         addr = request.META.get(header)
         if addr:
-            return addr
+            return addr.split(',')[0].strip()
 
 
 def get_extra_data(request, response):
