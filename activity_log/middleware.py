@@ -41,7 +41,7 @@ class ActivityLogMiddleware:
         if any(miss_log):
             return response
 
-        if request.user.is_authenticated():
+        if getattr(request, 'user', None) and request.user.is_authenticated():
             user, user_id = request.user.get_username(), request.user.pk
         else:
             user, user_id = 'anon_{}'.format(request.session.session_key), 0
