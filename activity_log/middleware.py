@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from django.utils.module_loading import import_string as _load
+from django.core.exceptions import DisallowedHost, PermissionDenied
 from .models import ActivityLog
 from . import conf
 
@@ -26,6 +27,13 @@ class ActivityLogMiddleware:
             getattr(request.user, 'update_last_activity', lambda: 1)()
 
     def process_response(self, request, response):
+        try:
+            self._write_log(request, response)
+        except DisallowedHost:
+            raise PermissionDenied()
+        return response
+
+    def _write_log(self, request, response):
         miss_log = [
             not(conf.ANONIMOUS or request.user.is_authenticated()),
             request.method not in conf.METHODS,
@@ -39,14 +47,14 @@ class ActivityLogMiddleware:
             miss_log.append(response.status_code in conf.EXCLUDE_STATUSES)
 
         if any(miss_log):
-            return response
+            return
 
         if getattr(request, 'user', None) and request.user.is_authenticated():
             user, user_id = request.user.get_username(), request.user.pk
         elif getattr(request, 'session', None):
             user, user_id = 'anon_{}'.format(request.session.session_key), 0
         else:
-            return response
+            return
 
         ActivityLog.objects.create(
             user_id=user_id,
@@ -57,5 +65,3 @@ class ActivityLogMiddleware:
             ip_address=get_ip_address(request),
             extra_data=get_extra_data(request, response)
         )
-
-        return response
