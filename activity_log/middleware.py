@@ -3,7 +3,8 @@
 from __future__ import unicode_literals
 
 from django.utils.module_loading import import_string as _load
-from django.core.exceptions import DisallowedHost, PermissionDenied
+from django.core.exceptions import DisallowedHost
+from django.http import HttpResponseForbidden
 from .models import ActivityLog
 from . import conf
 
@@ -30,7 +31,7 @@ class ActivityLogMiddleware:
         try:
             self._write_log(request, response)
         except DisallowedHost:
-            raise PermissionDenied()
+            return HttpResponseForbidden()
         return response
 
     def _write_log(self, request, response):
