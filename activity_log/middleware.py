@@ -16,25 +16,26 @@ def get_ip_address(request):
             return addr.split(',')[0].strip()
 
 
-def get_extra_data(request, response):
+def get_extra_data(request, response, body):
     if not conf.GET_EXTRA_DATA:
         return
-    return _load(conf.GET_EXTRA_DATA)(request, response)
+    return _load(conf.GET_EXTRA_DATA)(request, response, body)
 
 
 class ActivityLogMiddleware:
     def process_request(self, request):
+        self.req_body = request.body
         if conf.LAST_ACTIVITY and request.user.is_authenticated():
             getattr(request.user, 'update_last_activity', lambda: 1)()
 
     def process_response(self, request, response):
         try:
-            self._write_log(request, response)
+            self._write_log(request, response, self.req_body)
         except DisallowedHost:
             return HttpResponseForbidden()
         return response
 
-    def _write_log(self, request, response):
+    def _write_log(self, request, response, body):
         miss_log = [
             not(conf.ANONIMOUS or request.user.is_authenticated()),
             request.method not in conf.METHODS,
@@ -64,5 +65,5 @@ class ActivityLogMiddleware:
             request_method=request.method,
             response_code=response.status_code,
             ip_address=get_ip_address(request),
-            extra_data=get_extra_data(request, response)
+            extra_data=get_extra_data(request, response, body)
         )

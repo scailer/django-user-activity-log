@@ -16,7 +16,7 @@ More: https://github.com/scailer/django-user-activity-log
 
 setup(
     name='django-user-activity-log',
-    version='0.0.13',
+    version='0.0.14',
     author='Dmitriy Vlasov',
     author_email='scailer@russia.ru',
 
