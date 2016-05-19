@@ -24,13 +24,13 @@ def get_extra_data(request, response, body):
 
 class ActivityLogMiddleware:
     def process_request(self, request):
-        self.req_body = request.body
+        request.saved_body = request.body
         if conf.LAST_ACTIVITY and request.user.is_authenticated():
             getattr(request.user, 'update_last_activity', lambda: 1)()
 
     def process_response(self, request, response):
         try:
-            self._write_log(request, response, self.req_body)
+            self._write_log(request, response, getattr(request, 'saved_body', ''))
         except DisallowedHost:
             return HttpResponseForbidden()
         return response
