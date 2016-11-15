@@ -38,6 +38,7 @@ DATABASES = {
     },
 }
 
+# Django >= 1.7 only :
 # Create DB automatically (for postgres, and may be mysql).
 # We create log database automatically using raw SQL in pre_migrate signal.
 # You must insure, that DB user has permissions for creation databases. 
@@ -64,6 +65,12 @@ ACTIVITYLOG_STATUSES = (200, )
 
 # URL substrings, which ignores
 ACTIVITYLOG_EXCLUDE_URLS = ('/admin/activity_log/activitylog', )
+
+# For django 1.6 you must specify SOUTH_MIGRATION_MODULES:
+SOUTH_MIGRATION_MODULES = {
+    ...
+    'activity_log': 'activity_log.south_migrations',
+}
 ```
 
 account/models.py:

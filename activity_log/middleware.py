@@ -2,7 +2,12 @@
 
 from __future__ import unicode_literals
 
-from django.utils.module_loading import import_string as _load
+try:
+    # new in Django 1.7
+    from django.utils.module_loading import import_string as _load
+except ImportError:
+    # for Django 1.6
+    from django.utils.module_loading import import_by_path as _load
 from django.core.exceptions import DisallowedHost
 from django.http import HttpResponseForbidden
 from .models import ActivityLog
