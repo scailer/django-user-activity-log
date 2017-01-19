@@ -11,7 +11,7 @@ class LogAdmin(admin.ModelAdmin):
                     'response_code', 'datetime', 'ip_address')
     date_hierarchy = 'datetime'
     list_filter = ('request_method', 'response_code')
-    search_fields = ('user', 'request_url')
+    search_fields = ('user', 'request_url', 'ip_address')
 
 
 admin.site.register(models.ActivityLog, LogAdmin)
