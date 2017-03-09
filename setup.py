@@ -3,7 +3,7 @@
 from setuptools import setup
 
 DESCRIPTION = """
-django-user-activity-log2 is a fork of `django-user-activity-log <https://github.com/scailer/django-user-activity-log>` to improve.
+django-user-activity-log2 is a fork of `django-user-activity-log <https://github.com/scailer/django-user-activity-log>`_ to improve.
 
 This django app intended for writing HTTP log to database
 and/or watch last user activity.
