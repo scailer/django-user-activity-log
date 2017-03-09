@@ -3,6 +3,8 @@
 from setuptools import setup
 
 DESCRIPTION = """
+django-user-activity-log2 is a fork of `django-user-activity-log <https://github.com/scailer/django-user-activity-log>` to improve.
+
 This django app intended for writing HTTP log to database
 and/or watch last user activity.
 
@@ -11,14 +13,14 @@ Features:
   - Filters for ignoring some queries by URL, HTTP methods and response codes.
   - Saving anonymous activity as fake user.
 
-More: https://github.com/scailer/django-user-activity-log
+More: https://github.com/sebatyler/django-user-activity-log
 """
 
 setup(
-    name='django-user-activity-log',
-    version='0.0.15',
-    author='Dmitriy Vlasov',
-    author_email='scailer@russia.ru',
+    name='django-user-activity-log2',
+    version='0.0.16',
+    author='sebatyler',
+    author_email='sebatyler@gmail.com',
 
     include_package_data=True,
     packages=[
@@ -26,7 +28,7 @@ setup(
         'activity_log.migrations',
     ],
 
-    url='https://github.com/scailer/django-user-activity-log/',
+    url='https://github.com/sebatyler/django-user-activity-log/',
     license='MIT license',
     description='HTTP queries logger with flexible filters.',
     long_description=DESCRIPTION,
@@ -41,9 +43,9 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ),
 )
