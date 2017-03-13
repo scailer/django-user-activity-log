@@ -33,7 +33,7 @@ if conf.AUTOCREATE_DB:
 class ActivityLog(models.Model):
     user_id = models.IntegerField(_('user id '))
     user = models.CharField(_('user'), max_length=256)
-    request_url = models.CharField(_('url'), max_length=256, db_index=True)
+    request_url = models.CharField(_('url'), max_length=256)
     request_method = models.CharField(_('http method'), max_length=10)
     response_code = models.CharField(_('response code'), max_length=3)
     datetime = models.DateTimeField(_('datetime'), default=timezone.now, db_index=True)
