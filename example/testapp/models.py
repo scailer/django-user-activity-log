@@ -9,5 +9,5 @@ class User(AbstractUser, UserMixin):
         verbose_name = 'user'
 
 
-def make_extra_data(request, response):
+def make_extra_data(request, response, body):
     return str(request.META)
