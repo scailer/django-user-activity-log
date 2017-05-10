@@ -36,8 +36,12 @@ class ActivityLogMiddleware:
         return response
 
     def _write_log(self, request, response, body):
+        user_exists_or_authenticated = (
+            bool(getattr(request, 'user', None)) and 
+            request.user.is_authenticated()
+        )
         miss_log = [
-            not(conf.ANONIMOUS or request.user.is_authenticated()),
+            not(conf.ANONIMOUS or user_exists_or_authenticated),
             request.method not in conf.METHODS,
             any(url in request.path for url in conf.EXCLUDE_URLS)
         ]
