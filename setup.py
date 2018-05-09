@@ -18,7 +18,7 @@ More: https://github.com/sebatyler/django-user-activity-log
 
 setup(
     name='django-user-activity-log2',
-    version='0.0.18',
+    version='0.0.19',
     author='sebatyler',
     author_email='sebatyler@gmail.com',
 
@@ -46,6 +46,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ),
 )
