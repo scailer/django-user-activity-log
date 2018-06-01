@@ -8,7 +8,7 @@ Features:
 
 Install:
 
-$ pip install django-user-activity-log
+$ pip install django-user-activity-log2
 
 settings.py:
 
