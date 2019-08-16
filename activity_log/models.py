@@ -34,8 +34,8 @@ class ActivityLog(models.Model):
     user_id = models.IntegerField(_('user id '))
     user = models.CharField(_('user'), max_length=256)
     request_url = models.CharField(_('url'), max_length=256)
-    request_method = models.CharField(_('http method'), max_length=10)
-    response_code = models.CharField(_('response code'), max_length=3)
+    request_method = models.CharField(_('http method'), max_length=10, db_index=True)
+    response_code = models.CharField(_('response code'), max_length=3, db_index=True)
     datetime = models.DateTimeField(_('datetime'), default=timezone.now, db_index=True)
     extra_data = models.TextField(_('extra data'), blank=True, null=True)
     ip_address = models.GenericIPAddressField(
