@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 from django.conf import settings
 
 
-# Log anonimus actions?
-ANONIMOUS = getattr(settings, 'ACTIVITYLOG_ANONIMOUS', True)
+# Log anonymous actions?
+ANONYMOUS = getattr(settings, 'ACTIVITYLOG_ANONYMOUS', True)
 
 # Update last activity datetime in user profile
 LAST_ACTIVITY = getattr(settings, 'ACTIVITYLOG_LAST_ACTIVITY', True)
