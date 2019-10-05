@@ -6,7 +6,13 @@ from django.conf import settings
 
 
 # Log anonymous actions?
-ANONYMOUS = getattr(settings, 'ACTIVITYLOG_ANONYMOUS', True)
+
+ANONIMOUS = getattr(settings, 'ACTIVITYLOG_ANONIMOUS', False)
+# Ensure misspelling from previous versions is handled
+if ANONIMOUS:
+    ANONYMOUS = True
+else:
+    ANONYMOUS = getattr(settings, 'ACTIVITYLOG_ANONYMOUS', True)
 
 # Update last activity datetime in user profile
 LAST_ACTIVITY = getattr(settings, 'ACTIVITYLOG_LAST_ACTIVITY', True)
