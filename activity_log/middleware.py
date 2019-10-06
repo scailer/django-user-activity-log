@@ -38,7 +38,7 @@ class ActivityLogMiddleware(MiddlewareMixin):
 
     def _write_log(self, request, response, body):
         miss_log = [
-            not(conf.ANONIMOUS or request.user.is_authenticated),
+            not(conf.ANONYMOUS or request.user.is_authenticated),
             request.method not in conf.METHODS,
             any(url in request.path for url in conf.EXCLUDE_URLS)
         ]
