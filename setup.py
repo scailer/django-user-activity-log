@@ -8,7 +8,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as fh:
 
 setup(
     name='django-user-activity-log2',
-    version='0.0.23',
+    version='0.0.24',
     author='sebatyler',
     author_email='sebatyler@gmail.com',
 
@@ -22,6 +22,7 @@ setup(
     license='MIT license',
     description='HTTP queries logger with flexible filters.',
     long_description=readme,
+    long_description_content_type="text/markdown",
 
     install_requires=[
     ],
