@@ -1,5 +1,5 @@
 decorator==4.0.2
-Django==1.8.4
+Django==1.11.29
 ipython==4.0.0
 ipython-genutils==0.1.0
 path.py==8.1
