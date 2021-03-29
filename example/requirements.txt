@@ -6,7 +6,7 @@ path.py==8.1
 pexpect==3.3
 pickleshare==0.5
 pudb==2015.3
-Pygments==2.0.2
+Pygments==2.7.4
 pytz==2015.4
 simplegeneric==0.8.1
 traitlets==4.0.0
